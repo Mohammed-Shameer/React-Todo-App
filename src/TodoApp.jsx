@@ -18,7 +18,8 @@ export default function TodoApp(){
 		};
 	}
 
-	function updateTodoList(value){
+	function updateTodoList(event, value){
+		event.preventDefault();
 		if(!value){ 
 			window.alert("Please enter the value!");
 			return;
@@ -60,13 +61,15 @@ export default function TodoApp(){
 
 			{/* Todo Form */}
 			<div className="todo-form-section">
-				<input 
-				    type="text"
-					value={todo}
-					onInput={(e) => setTodo(e.target.value)}
-					placeholder="Please enter your todo"
-				/>
-				<button onClick={() => updateTodoList(todo)}>+</button>
+			    <form onSubmit={(e) => updateTodoList(e, todo)}>
+			    	<input 
+					    type="text"
+						value={todo}
+						onInput={(e) => setTodo(e.target.value)}
+						placeholder="Please enter your todo"
+					/>
+					<button type="submit">+</button>
+			    </form>
 			</div>
 
 			{/* Todo List */}
